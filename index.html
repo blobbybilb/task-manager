@@ -16,6 +16,10 @@
       <button>Button 1</button>
       <button>Button 2</button>
       <button>Button 3</button>
+      <div class="bottom-area">
+        <input type="checkbox" id="spellcheck-toggle" checked />
+        <label for="spellcheck-toggle">Enable spellcheck</label>
+      </div>
     </div>
   </div>
   <div class="right-column">
@@ -23,7 +27,7 @@
       <h2>Scratchpad</h2>
       <textarea></textarea>
     </div>
-    <div class="tabs">
+    <!-- <div class="tabs">
       <button class="active" data-tab="#ideas">Ideas</button>
       <button>Long Term</button>
       <button>More Later</button>
@@ -31,9 +35,24 @@
 
     <textarea class="active tab-content"></textarea>
     <textarea class="tab-content"></textarea>
-    <textarea class="tab-content"></textarea>
+    <textarea class="tab-content"></textarea> -->
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab-content="ideas">Ideas</button>
+      <button class="tab-button" data-tab-content="long-term">Long term</button>
+      <!-- Add more tab buttons here -->
+    </div>
+
+    <textarea class="tab-content" id="ideas" style="display: block"></textarea>
+    <textarea class="tab-content" id="long-term"></textarea>
+    <!-- Add more tab content areas here -->
   </div>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     .container {
       display: flex;
       flex-direction: row;
@@ -41,13 +60,13 @@
       height: 100vh;
     }
 
-    textarea {
-      display: inline;
-    }
-
     .tasks {
       width: 40vw;
       padding: 20px;
+    }
+
+    .tasks textarea {
+      height: 90%;
     }
 
     .middle-column {
@@ -63,9 +82,16 @@
       margin-bottom: 20px;
     }
 
+    .reminders textarea,
+    .later textarea {
+      height: 85%;
+    }
+
     .bottom-buttons {
       display: flex;
       justify-content: center;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
     .right-column {
@@ -158,6 +184,9 @@
       border: 1px solid #ddd;
       border-radius: 4px;
     }
+    .scratchpad textarea {
+      height: 85%;
+    }
 
     /* Add padding between the areas within the middle column */
     .reminders {
@@ -180,35 +209,65 @@
       font-weight: bold;
       border-bottom: 1px solid #ddd;
     }
+
+    /* fonts.css */
+
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+    /* Apply the font styles */
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    textarea,
+    button {
+      font-family: "Montserrat", sans-serif;
+    }
   </style>
   <script>
-    // Get all the tabs
-    const tabs = document.querySelectorAll(".tabs button");
+    // Get all the tab buttons
+    const tabButtons = document.querySelectorAll(".tab-button");
 
     // Get all the tab content areas
-    const tabContents = document.querySelectorAll(".tab-content");
+    const tabContentAreas = document.querySelectorAll(".tab-content");
 
-    // Add a click event listener to each tab
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        // Remove the 'active' class from all tabs
-        tabs.forEach((tab) => {
-          tab.classList.remove("active");
+    // hide all other tab content areas on load
+    tabContentAreas.forEach((area) => {
+      area.style.display = "none";
+    });
+
+    tabContentAreas[0].style.display = "block";
+
+    // Loop through each tab button
+    tabButtons.forEach((button) => {
+      // Add a click event listener to the button
+      button.addEventListener("click", () => {
+        // Remove the "active" class from all the tab buttons
+        tabButtons.forEach((button) => {
+          button.classList.remove("active");
         });
-
-        // Add the 'active' class to the clicked tab
-        tab.classList.add("active");
-
-        // Hide all tab content areas
-        tabContents.forEach((content) => {
-          content.style.display = "none";
+        // Add the "active" class to the clicked button
+        button.classList.add("active");
+        // Hide all the tab content areas
+        tabContentAreas.forEach((area) => {
+          area.style.display = "none";
         });
-
-        // Show the content area for the clicked tab
-        const contentId = tab.getAttribute("data-tab");
-        const content = document.querySelector(contentId);
-        content.style.display = "block";
+        // Show the tab content area that corresponds to the clicked button
+        const tabContentId = button.getAttribute("data-tab-content");
+        const tabContent = document.querySelector(`#${tabContentId}`);
+        tabContent.style.display = "block";
       });
+    });
+
+    var spellcheckToggle = document.getElementById("spellcheck-toggle");
+    var textareas = document.getElementsByTagName("textarea");
+
+    spellcheckToggle.addEventListener("change", function () {
+      for (var i = 0; i < textareas.length; i++) {
+        textareas[i].spellcheck = this.checked;
+      }
     });
   </script>
 </div>
