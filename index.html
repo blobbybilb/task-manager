@@ -1,0 +1,214 @@
+<div class="container">
+  <div class="tasks">
+    <h2>Tasks</h2>
+    <textarea></textarea>
+  </div>
+  <div class="middle-column">
+    <div class="reminders">
+      <h2>Reminders</h2>
+      <textarea></textarea>
+    </div>
+    <div class="later">
+      <h2>Later</h2>
+      <textarea></textarea>
+    </div>
+    <div class="bottom-buttons">
+      <button>Button 1</button>
+      <button>Button 2</button>
+      <button>Button 3</button>
+    </div>
+  </div>
+  <div class="right-column">
+    <div class="scratchpad">
+      <h2>Scratchpad</h2>
+      <textarea></textarea>
+    </div>
+    <div class="tabs">
+      <button class="active" data-tab="#ideas">Ideas</button>
+      <button>Long Term</button>
+      <button>More Later</button>
+    </div>
+
+    <textarea class="active tab-content"></textarea>
+    <textarea class="tab-content"></textarea>
+    <textarea class="tab-content"></textarea>
+  </div>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    textarea {
+      display: inline;
+    }
+
+    .tasks {
+      width: 40vw;
+      padding: 20px;
+    }
+
+    .middle-column {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      padding: 20px;
+    }
+
+    .reminders,
+    .later {
+      height: calc(33.33% - 20px);
+      margin-bottom: 20px;
+    }
+
+    .bottom-buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      padding: 20px;
+    }
+
+    .scratchpad {
+      height: calc(50% - 20px);
+      margin-bottom: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-content {
+      height: 50%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 16px;
+      line-height: 1.5;
+      resize: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    button.active {
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+      gap: 20px;
+    }
+
+    /* Add background colors to the columns */
+    .tasks {
+      width: 40vw;
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
+
+    .middle-column {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
+
+    /* Add borders to the areas within each column */
+    .tasks textarea,
+    .reminders textarea,
+    .later textarea {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .scratchpad textarea,
+    .tab-content textarea {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    /* Add padding between the areas within the middle column */
+    .reminders {
+      margin-bottom: 10px;
+    }
+
+    .later {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Add padding between the tabs and the scratchpad area */
+    .tabs {
+      margin-bottom: 10px;
+    }
+
+    /* Add styles to the active tab */
+    .tabs button.active {
+      background-color: #ddd;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  <script>
+    // Get all the tabs
+    const tabs = document.querySelectorAll(".tabs button");
+
+    // Get all the tab content areas
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    // Add a click event listener to each tab
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Remove the 'active' class from all tabs
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
+        });
+
+        // Add the 'active' class to the clicked tab
+        tab.classList.add("active");
+
+        // Hide all tab content areas
+        tabContents.forEach((content) => {
+          content.style.display = "none";
+        });
+
+        // Show the content area for the clicked tab
+        const contentId = tab.getAttribute("data-tab");
+        const content = document.querySelector(contentId);
+        content.style.display = "block";
+      });
+    });
+  </script>
+</div>
