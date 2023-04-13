@@ -43,9 +43,10 @@ class LastColumn extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 padding: const EdgeInsets.all(20.0),
-                child: const TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Enter notes...',
+                child: TextField(
+                  controller: scratchpadController,
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Jot down your thoughts here...',
                   ),
                   maxLines: null,
                 ),
@@ -55,58 +56,92 @@ class LastColumn extends StatelessWidget {
               height: 20.0,
             ),
             Expanded(
-              child: DefaultTabController(
-                length: 2,
-                child: Column(
-                  children: [
-                    const TabBar(
-                      tabs: [
-                        Tab(
-                          text: 'Ideas',
-                        ),
-                        Tab(
-                          text: 'Long term',
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            padding: const EdgeInsets.all(20.0),
-                            child: const TextField(
-                              decoration: InputDecoration.collapsed(
-                                hintText: 'Enter your ideas...',
-                              ),
-                              maxLines: null,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            padding: const EdgeInsets.all(20.0),
-                            child: const TextField(
-                              decoration: InputDecoration.collapsed(
-                                hintText: 'Enter your long term tasks...',
-                              ),
-                              maxLines: null,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              child: LastColumnTabs(
+                ideasController: ideasController,
+                longtermController: longtermController,
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LastColumnTabs extends StatelessWidget {
+  final TextEditingController ideasController;
+  final TextEditingController longtermController;
+
+  // constructor
+  const LastColumnTabs({
+    Key? key,
+    required this.ideasController,
+    required this.longtermController,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          const TabBar(
+            tabs: [
+              Tab(
+                text: 'Ideas',
+              ),
+              Tab(
+                text: 'Long term',
+              ),
+            ],
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            labelStyle: TextStyle(
+              color: Colors.black,
+              fontWeight:
+                  FontWeight.bold, // Sets the selected tab's text to bold
+            ),
+            unselectedLabelStyle: TextStyle(
+              color: Colors.grey,
+              fontWeight:
+                  FontWeight.normal, // Sets the unselected tabs' text to normal
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: ideasController,
+                    decoration: const InputDecoration.collapsed(
+                      hintText: 'Save your ideas here...',
+                    ),
+                    maxLines: null,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: longtermController,
+                    decoration: const InputDecoration.collapsed(
+                      hintText: 'Your long term goals go here...',
+                    ),
+                    maxLines: null,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

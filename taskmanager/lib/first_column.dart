@@ -37,9 +37,10 @@ class FirstColumn extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 padding: const EdgeInsets.all(20.0),
-                child: const TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Enter your task here...',
+                child: TextField(
+                  controller: tasksController,
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Enter your tasks here...',
                   ),
                   maxLines: null,
                 ),

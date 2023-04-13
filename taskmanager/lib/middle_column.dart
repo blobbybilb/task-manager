@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sync.dart';
 
 class MiddleColumn extends StatelessWidget {
   final TextEditingController remindersController;
@@ -38,9 +39,10 @@ class MiddleColumn extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 padding: const EdgeInsets.all(20.0),
-                child: const TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Enter your reminder here...',
+                child: TextField(
+                  controller: remindersController,
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Reminders go here...',
                   ),
                   maxLines: null,
                 ),
@@ -66,9 +68,10 @@ class MiddleColumn extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 padding: const EdgeInsets.all(20.0),
-                child: const TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'Enter tasks for later...',
+                child: TextField(
+                  controller: laterController,
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Keep things for later here...',
                   ),
                   maxLines: null,
                 ),
@@ -77,22 +80,11 @@ class MiddleColumn extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  // Placeholder(
-                  //   fallbackWidth: 100,
-                  // ),
-                  // Placeholder(
-                  //   fallbackWidth: 100,
-                  // ),
-                  // Placeholder(
-                  //   fallbackWidth: 100,
-                  // ),
-
-                  // 3 buttons that print hello world when clicked
                   TextButton(
                     onPressed: () {},
                     child: const Text('Hello World'),
