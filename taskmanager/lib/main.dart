@@ -5,8 +5,6 @@ import 'first_column.dart';
 import 'middle_column.dart';
 import 'last_column.dart';
 
-import 'sync.dart';
-
 class TaskManager extends StatefulWidget {
   const TaskManager({Key? key}) : super(key: key);
 
@@ -21,7 +19,8 @@ class AppState extends State<TaskManager> {
   final TextEditingController scratchpadController = TextEditingController();
   final TextEditingController ideasController = TextEditingController();
   final TextEditingController longtermController = TextEditingController();
-  final SyncEngine syncEngine = SyncEngine();
+
+  var reminders = [];
 
   @override
   void dispose() {
@@ -35,13 +34,47 @@ class AppState extends State<TaskManager> {
     super.dispose();
   }
 
-  void prepareTasksField() {
-    final tasksText = tasksController.text.trim();
-    final regex = RegExp(r'\n{2,}'); // Matches 2 or more newlines
-    final tasksList =
-        tasksText.split(regex).map((task) => task.trim()).toList();
-    final preparedTasksText = tasksList.join("\n⸻\n");
-    tasksController.text = preparedTasksText;
+  void prepare() {
+    // initial separation
+    for (final textController in [
+      tasksController,
+      remindersController,
+      laterController,
+      ideasController,
+      longtermController
+    ]) {
+      final tasksList = textController.text
+          .trim()
+          .split({remindersController}.contains(textController)
+              ? RegExp(r'\n{1,}')
+              : RegExp(r'\n{2,}'))
+          .map((task) => task.trim())
+          .toList();
+      var preparedTasksText = tasksList.join("\n⸻\n");
+
+      while (preparedTasksText.contains("⸻\n⸻")) {
+        preparedTasksText = preparedTasksText.replaceAll("⸻\n⸻", "⸻");
+      }
+
+      textController.text = preparedTasksText;
+    }
+
+    reminders = [];
+    remindersController.text = remindersController.text
+        .split("\n⸻\n")
+        .map((e) => e.split("@")[0].trim() != ""
+            ? "${e.split("@")[0].trim()}${((e.split("@").length >= 2) && ((e[1] != "") || (e[1] != " "))) ? " @ ${() {
+                e.split("@")[1].trim() != ""
+                    ? reminders
+                        .add([e.split("@")[0].trim(), e.split("@")[1].trim()])
+                    : null;
+                return e.split("@")[1].trim();
+              }()}" : ""}"
+            : "")
+        .where((e) => e != "")
+        .join("\n⸻\n");
+
+    print(reminders);
   }
 
   @override
@@ -51,7 +84,7 @@ class AppState extends State<TaskManager> {
       onKey: (event) {
         if (event.logicalKey == LogicalKeyboardKey.keyS &&
             event.isMetaPressed) {
-          prepareTasksField();
+          prepare();
           // Add your action here
         }
       },

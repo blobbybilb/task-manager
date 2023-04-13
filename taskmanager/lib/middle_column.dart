@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'sync.dart';
 
 class MiddleColumn extends StatelessWidget {
   final TextEditingController remindersController;
@@ -87,11 +86,11 @@ class MiddleColumn extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {},
-                    child: const Text('Hello World'),
+                    child: const Text("Settings"),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text('Hello World'),
+                    child: const Text("About"),
                   ),
                   IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
                 ],
