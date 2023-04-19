@@ -1,3 +1,4 @@
+import 'package:blobtask/archive.dart';
 import 'package:flutter/material.dart';
 
 class MiddleColumn extends StatelessWidget {
@@ -84,15 +85,77 @@ class MiddleColumn extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text("Settings"),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text("Settings"),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Archived Items'),
+                                    content:
+                                        SelectableText(getArchiveFormatted()),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: const Text('Close'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text("View Archive"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Help'),
+                                    content: const Text(
+                                        """To format and save: Cmd + S.\nTo archive (mark as done): Cmd + D."""),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: const Text('Close'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text("Help"),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text("About"),
-                  ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+
+                  // IgnorePointer(
+                  //   child: IconButton(
+                  //       onPressed: () {},
+                  //       icon: const Icon(
+                  //         Icons.archive_outlined,
+                  //         color: Colors.blue,
+                  //       )),
+                  // ),
                 ],
               ),
             ),

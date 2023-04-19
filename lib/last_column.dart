@@ -91,7 +91,7 @@ class LastColumnTabs extends StatelessWidget {
                 text: 'Ideas',
               ),
               Tab(
-                text: 'Long term',
+                text: 'Long-term',
               ),
             ],
             labelColor: Colors.black,
@@ -133,7 +133,7 @@ class LastColumnTabs extends StatelessWidget {
                   child: TextField(
                     controller: longtermController,
                     decoration: const InputDecoration.collapsed(
-                      hintText: 'Your long term goals go here...',
+                      hintText: 'Your long-term goals go here...',
                     ),
                     maxLines: null,
                   ),
