@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../../Library/Containers/com.example.taskmanager/Data/.config/blobtask"
+	}
+],
+  "settings": {}
+}

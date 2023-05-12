@@ -8,10 +8,10 @@ There are a lot of "productivity apps" out there, many of which I've tried for s
 
 ### Observations
 
-1. Regardless of which app I'm using, some similarites emerge in how I use it. Tasks that I'm working on or will be working on soon
+1. Regardless of which app I'm using, some similarites emerge in how I use it. Tasks that I'm working on or will be working on soon, tasks that I'll be working on later, reminders for a specific time, and more, each go together.
 2. It takes time to dig around to find where I'm keeping track of a task. It would be better if I could just see everything relevant at once, while still being able to focus.
-3. Distractions come up. Some idea comes up while focusing on something else (eg. make an app that does xyz). I want to note something down for later (eg. backed up pictures folder to USB—don't back it up again this evening). It would
-4. Being distracted by having to figure out how my productivity app works is annoying and stupid. I want it to be predictable and consistent.
+3. Distractions come up. Some idea comes up while focusing on something else (eg. make an app that does xyz). I want to note something down for later (eg. backed up pictures folder to USB—don't back it up again this evening). I would like to have one place to keep these until I can deal with them later.
+4. Being distracted by having to figure out how my productivity app works is annoying. I want it to be predictable and consistent.
 
 ### Features
 
@@ -23,4 +23,4 @@ There are a lot of "productivity apps" out there, many of which I've tried for s
   - "Scratchpad" for those things that come up in the middle (3)
   - Tabs for "Ideas" (for ideas for stuff that you may want to work on later) and "Long-term" (for long-term goals and tasks)
 - Everything is just a simple text field, and works exactly like a normal text field works (4)
-- The app formats each field (similarly, but optimised for what it's used for) to make it consistent
+- The app formats each field (similarly, but optimised for what it's used for) to make it consistent.

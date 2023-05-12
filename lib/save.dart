@@ -11,6 +11,7 @@ String? save(
   String ideas,
   String longterm,
 ) {
+  print(dataDir);
   try {
     final File tasksFile = File("${dataDir}tasks.txt");
     final File remindersFile = File("${dataDir}reminders.txt");
