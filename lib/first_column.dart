@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class FirstColumn extends StatelessWidget {
   final TextEditingController tasksController;
 
-  // constructor
   const FirstColumn({
     Key? key,
     required this.tasksController,

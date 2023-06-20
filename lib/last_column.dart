@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LastColumn extends StatelessWidget {
-  // takes parameter controller
-
   final TextEditingController scratchpadController;
   final TextEditingController ideasController;
   final TextEditingController longtermController;
 
-  // constructor
   const LastColumn({
     Key? key,
     required this.scratchpadController,

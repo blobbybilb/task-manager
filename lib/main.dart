@@ -17,6 +17,46 @@ class TaskManager extends StatefulWidget {
   AppState createState() => AppState();
 }
 
+// DateTime? parseDateTime(String dateTimeString) {
+//   dateTimeString = dateTimeString.toLowerCase();
+
+//   // format 1: "1.Apr.2023 7:30 PM"
+//   RegExp exp1 = RegExp(r'^\d{1,2}\.\w{3}\.\d{4} \d{1,2}:\d{2} [ap]m$');
+//   if (exp1.hasMatch(dateTimeString)) {
+//     dateTimeString = dateTimeString.replaceAll('.', ' ');
+//     return DateTime.parse(dateTimeString);
+//   }
+
+//   // format 2: "today 7:30 pm", "yesterday 7:30 pm", "tomorrow 7:30 pm"
+//   RegExp exp2 = RegExp(r'^(today|yesterday|tomorrow) \d{1,2}:\d{2} [ap]m$');
+//   if (exp2.hasMatch(dateTimeString)) {
+//     String date = '';
+//     if (dateTimeString.contains('today')) {
+//       date = DateTime.now().toString().split(' ')[0];
+//     } else if (dateTimeString.contains('yesterday')) {
+//       date = DateTime.now()
+//           .subtract(const Duration(days: 1))
+//           .toString()
+//           .split(' ')[0];
+//     } else if (dateTimeString.contains('tomorrow')) {
+//       date =
+//           DateTime.now().add(const Duration(days: 1)).toString().split(' ')[0];
+//     }
+//     dateTimeString = '$date ${dateTimeString.split(' ')[1]}';
+//     return DateTime.parse(dateTimeString);
+//   }
+
+//   // format 3: "7:30 pm" (assume today)
+//   RegExp exp3 = RegExp(r'^\d{1,2}:\d{2} [ap]m$');
+//   if (exp3.hasMatch(dateTimeString)) {
+//     String date = DateTime.now().toString().split(' ')[0];
+//     dateTimeString = '$date $dateTimeString';
+//     return DateTime.parse(dateTimeString);
+//   }
+
+//   return null;
+// }
+
 class AppState extends State<TaskManager> {
   final TextEditingController tasksController = TextEditingController();
   final TextEditingController remindersController = TextEditingController();
@@ -24,43 +64,6 @@ class AppState extends State<TaskManager> {
   final TextEditingController scratchpadController = TextEditingController();
   final TextEditingController ideasController = TextEditingController();
   final TextEditingController longtermController = TextEditingController();
-
-  DateTime? parseDateTime(String dateTimeString) {
-    dateTimeString = dateTimeString.toLowerCase();
-
-    // format 1: "1.Apr.2023 7:30 PM"
-    RegExp exp1 = RegExp(r'^\d{1,2}\.\w{3}\.\d{4} \d{1,2}:\d{2} [ap]m$');
-    if (exp1.hasMatch(dateTimeString)) {
-      dateTimeString = dateTimeString.replaceAll('.', ' ');
-      return DateTime.parse(dateTimeString);
-    }
-
-    // format 2: "today 7:30 pm", "yesterday 7:30 pm", "tomorrow 7:30 pm"
-    RegExp exp2 = RegExp(r'^(today|yesterday|tomorrow) \d{1,2}:\d{2} [ap]m$');
-    if (exp2.hasMatch(dateTimeString)) {
-      String date = '';
-      if (dateTimeString.contains('today')) {
-        date = DateTime.now().toString().split(' ')[0];
-      } else if (dateTimeString.contains('yesterday')) {
-        date =
-            DateTime.now().subtract(Duration(days: 1)).toString().split(' ')[0];
-      } else if (dateTimeString.contains('tomorrow')) {
-        date = DateTime.now().add(Duration(days: 1)).toString().split(' ')[0];
-      }
-      dateTimeString = date + ' ' + dateTimeString.split(' ')[1];
-      return DateTime.parse(dateTimeString);
-    }
-
-    // format 3: "7:30 pm" (assume today)
-    RegExp exp3 = RegExp(r'^\d{1,2}:\d{2} [ap]m$');
-    if (exp3.hasMatch(dateTimeString)) {
-      String date = DateTime.now().toString().split(' ')[0];
-      dateTimeString = date + ' ' + dateTimeString;
-      return DateTime.parse(dateTimeString);
-    }
-
-    return null;
-  }
 
 /*
   late Timer timer = Timer.periodic(const Duration(minutes: 1), (t) {
