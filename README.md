@@ -1,6 +1,14 @@
+**Update:** After trying it for some time, it's not as good as I'd hoped. I'm making a version 2 when I have time.
+
+---
+
 # blobbybilb's task manager
 
 A task manager for humans.
+
+
+https://github.com/blobbybilb/task-manager/assets/58201828/20048f7f-10b6-4265-bbaa-676092849076
+
 
 ## Why?
 
